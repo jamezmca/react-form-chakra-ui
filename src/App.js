@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import { CSSReset, ChakraProvider, Button } from '@chakra-ui/react'
+import { ColorModeScript, useColorMode } from '@chakra-ui/color-mode';
+
+import PrettyForm from './PrettyForm';
+import theme from './theme'
+
 
 function App() {
+  const { colorMode, toggleColorMode } = useColorMode()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <ChakraProvider theme={theme}>
+      <CSSReset />
+      <header>
+        <Button onClick={toggleColorMode}>
+          Toggle {colorMode === "light" ? "Dark" : "Light"}
+        </Button>
       </header>
-    </div>
+      <PrettyForm />
+    </ChakraProvider>
   );
 }
 
